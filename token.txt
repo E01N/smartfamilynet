@@ -1,0 +1,5 @@
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmEzMGNiZTViYzExZDYzNmFjMmU0YyIsImlhdCI6MTc0NzU5NTQ2NywiZXhwIjoxNzQ4MjAwMjY3fQ.6rnpjumfPlffTY3oUCALj_tOZxWX5h20-hCcK5cBcIQ",
+    "user": 
+        "id": "682a30cbe5bc11d636ac2e4c",
+        "email": "parent@example.com",
+        "isParent": true
