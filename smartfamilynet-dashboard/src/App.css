@@ -148,6 +148,25 @@ h2 {
   background-color: #050505;
 }
 
+.add-child-button {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.add-child-form {
+  margin-bottom: 1rem;
+}
+
+.add-child-form input {
+  margin-right: 0.5rem;
+}
+
+.small-button {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  margin: 4px;
+}
+
 
 /* Summary Section */
 .summary-section {

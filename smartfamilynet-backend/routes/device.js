@@ -21,7 +21,7 @@ router.get('/:mac/config', async (req, res) => {
       childId: child._id,
       blockList: child.blockList || [],
       timeLimits: child.timeLimits || [],
-      status: 'OK'
+      status: 'OK',
     });
   } catch (err) {
     console.error('[Device Config Error]', err.message);
@@ -41,28 +41,28 @@ router.post('/:mac/logs', async (req, res) => {
       return res.status(400).json({ msg: 'Invalid or missing logs' });
     }
 
-// Look up child (optional)
-const child = await Child.findOne({ 'devices.macAddress': mac });
-const childId = child ? child._id : null;
+    // Look up child by MAC address
+    const child = await Child.findOne({ 'devices.macAddress': mac });
+    const childId = child ? child._id : null;
 
-// Save each log
-for (const entry of logs) {
-  const newLog = new UsageLog({
-    macAddress: mac,
-    child: childId,
-    event: entry.event,
-    domain: entry.domain,
-    timestamp: entry.timestamp || new Date()
-  });
-  await newLog.save();
-}
+    // Save each log to the database
+    for (const entry of logs) {
+      const newLog = new UsageLog({
+        macAddress: mac,
+        child: childId,
+        event: entry.event,
+        domain: entry.domain,
+        timestamp: entry.timestamp || new Date(),
+      });
 
-res.status(200).json({ msg: 'Logs saved to database' });
+      await newLog.save();
+    }
+
+    res.status(200).json({ msg: 'Logs saved to database' });
   } catch (err) {
     console.error('[Device Log Error]', err.message);
     res.status(500).send('Server error');
   }
 });
-
 
 module.exports = router;

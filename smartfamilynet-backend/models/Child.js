@@ -30,3 +30,21 @@ const ChildSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Child', ChildSchema);
+
+// POST /api/children/:id/devices
+router.post('/:id/devices', authenticateToken, async (req, res) => {
+  const { name, macAddress } = req.body;
+
+  try {
+    const child = await Child.findById(req.params.id);
+    if (!child) return res.status(404).json({ message: 'Child not found' });
+
+    child.devices.push({ name, macAddress });
+    await child.save();
+
+    res.json(child.devices);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
